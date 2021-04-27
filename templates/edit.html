@@ -1,6 +1,18 @@
-<h1>Editing {{.Title}}</h1>
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editing "{{.Title}}" page</title>
+</head>
+<body>
+<div align="center">
+<h1>Editing "{{.Title}}" page</h1>
 
 <form action="/save/{{.Title}}" method="POST">
-<div><textarea name="body" rows="20" cols="80">{{printf "%s" .Body}}</textarea></div>
+<div><textarea name="body" rows="50" cols="150">{{printf "%s" .Body}}</textarea></div>
 <div><input type="submit" value="Save"></div>
 </form>
+</div>
+</body>
+</html>

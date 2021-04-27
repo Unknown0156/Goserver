@@ -12,6 +12,9 @@ import (
 	"regexp"
 	"strings"
 	"time"
+
+	"golang.org/x/text/language"
+	"golang.org/x/text/search"
 )
 
 var templates = template.Must(template.ParseFiles("templates/edit.html"))
@@ -52,6 +55,14 @@ func htmlHandler(w http.ResponseWriter, r *http.Request, title string) {
 	if err := p.load(title); err != nil {
 		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
 		return
+	}
+
+	index, ok := substringIndex(string(p.Body), "</body>")
+	edit := []byte("<div align='center'><a href='edit/" + p.Title + "'>EDIT THIS PAGE</a></div>")
+	if ok {
+		p.Body = append(p.Body[:index], append(edit, p.Body[index:]...)...)
+	} else {
+		p.Body = edit
 	}
 	w.Write(p.Body)
 }
@@ -106,6 +117,15 @@ func resHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Add("Content-Type", contentType)
 	w.Write(p.Body)
+}
+
+func substringIndex(str string, substr string) (int, bool) {
+	m := search.New(language.English, search.IgnoreCase)
+	start, _ := m.IndexString(str, substr)
+	if start == -1 {
+		return start, false
+	}
+	return start, true
 }
 
 func startServer(logger *log.Logger, addr string, srvch chan string) *http.Server {
@@ -196,7 +216,3 @@ func main() {
 		}
 	}
 }
-
-/*TODO
-Edit btn
-*/
