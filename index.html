@@ -1,181 +1,124 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-  <head>
-    <meta charset="utf-8">
-    <title>A+</title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-
-  <body>
-
-    <header class="main-header">
-      <div class="container">
-        <div class="header-top">
-          <div class="logo">
-            <img src="img/logo.png" width="182" height="81" alt="A+">
-          </div>
-          <nav class="main-menu">
-            <ul>
-              <li><a href="inner">Программа обучения</a></li>
-              <li><a href="#">Выпускники</a></li>
-              <li><a href="#">Как поступить</a></li>
-              <li><a href="#">Контакты</a></li>
-            </ul>
-          </nav>
-        </div>
-        <div class="promo">
-          <div class="promo-title">Учеба еще никогда не была такой интересной!</div>
-          <p>Обучаем готовых к трудоустройству специалистов на теоретических и практических курсах.</p>
-          <a href="#" class="btn btn-green">Подать заявку</a>
-        </div>
-      </div>
-    </header>
-
-    <section class="features">
-      <div class="container">
-        <div class="features-item">
-          <div class="features-icon features-icon-schedule"></div>
-          <h2 class="features-title">Гибкий график обучения</h2>
-          <p>Современный темп жизни требует гибкого подхода к расписанию.</p>
-        </div>
-        <div class="features-item">
-          <div class="features-icon features-icon-practice"></div>
-          <h2 class="features-title">Практические занятия</h2>
-          <p>На одной теории далеко не уедешь поэтому мы обучаем на практике.</p>
-        </div>
-        <div class="features-item">
-          <div class="features-icon features-icon-work"></div>
-          <h2 class="features-title">Не оставим без работы</h2>
-          <p>Хорошие специалисты всегда в цене и Вы станете именно таким.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="feedback">
-      <div class="container">
-        <h2 class="feedback-title">Отзывы выпускников</h2>
-        <a href="#" class="feedback-all">Показать все</a>
-        <div class="feedback-item">
-          <div class="feedback-author">
-            <img src="img/user.jpg" width="133" height="133" alt="Иванов Петр">
-            <h3>Иванов Петр Сергеевич</h3>
-            <p>Группа: 04-И-15<br> Выпуск: 2009 г.</p>
-          </div>
-          <blockquote class="feedback-content">
-            <h3>Тяжело в учении, легко в бою!</h3>
-            <p>Во время обучения было очень тяжело, практические занятия требовали усидчивости и гибкости ума. Однако, по прошествии времени, понял, что все это было не зря! Устроился в ведущую студию своего города сразу после выпуска, а проработав там три года основал свою собственную!</p>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <section class="contacts">
-      <div class="container">
-        <h2 class="contacts-title">Обратная связь</h2>
-        <form class="contacts-form" action="" method="post">
-          <table>
-            <tr>
-              <td class="title">
-                <label for="fullname">ФИО:</label>
-              </td>
-              <td class="field">
-                <input type="text" id="fullname" name="fullname" placeholder="Представьтесь, пожалуйста">
-              </td>
-            </tr>
-            <tr>
-              <td class="title">
-                <label for="age">Возраст:</label>
-              </td>
-              <td class="field">
-                <input type="text" id="age" name="age" placeholder="Укажите возраст, хотя бы приблизительно">
-              </td>
-            </tr>
-            <tr>
-              <td class="title">Пол:</td>
-              <td class="field">
-                <label><input type="radio" id="man" name="sex" value="man"> Мужской</label>
-                <label><input type="radio" id="woman" name="sex" value="woman"> Женский</label>
-              </td>
-            </tr>
-            <tr>
-              <td class="title">
-                <label for="message">Вопрос:</label>
-              </td>
-              <td class="field">
-                <textarea id="message" name="message" placeholder="Сообщите все, что считаете нужным"></textarea>
-              </td>
-            </tr>
-            <tr>
-              <td class="title"></td>
-              <td class="field">
-                <input type="submit" class="btn btn-green" value="Отправить">
-              </td>
-            </tr>
-          </table>
-        </form>
-        <div class="contacts-instruction">
-          <h3>Заинтересовались обучением на нашей кафедре?</h3>
-          <p>Заполните короткую форму обратной связи и отправьте нам.</p>
-          <p>Мы подготовим для вас индивидуальное предложение и выйдем на связь!</p>
-          <p class="contacts-alert"><strong>Внимание!</strong> Все поля обязательны для заполнения.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-top">
-          <div class="footer-address">
-            <div class="logo">
-              <img src="img/logo-footer.png" width="180" height="81" alt="A+">
-            </div>
-            <p>197101, г. Санкт-Петербург,<br> пр. Кронверкский, д. 49</p>
-          </div>
-          <div class="footer-menu">
-            <h3>Обучение</h3>
-            <ul>
-              <li><a href="#">Расписание</a></li>
-              <li><a href="#">Предметы</a></li>
-              <li><a href="#">Практика</a></li>
-            </ul>
-          </div>
-          <div class="footer-menu">
-            <h3>Выпускники</h3>
-            <ul>
-              <li><a href="#">Достижения</a></li>
-              <li><a href="#">Отзывы</a></li>
-              <li><a href="#">Найти</a></li>
-            </ul>
-          </div>
-          <div class="footer-menu">
-            <h3>Как поступить</h3>
-            <ul>
-              <li><a href="#">На коммерцию</a></li>
-              <li><a href="#">Целевой набор</a></li>
-              <li><a href="#">На бюджет</a></li>
-            </ul>
-          </div>
-          <div class="footer-menu">
-            <h3>Контакты</h3>
-            <ul>
-              <li><a href="#">Обратная связь</a></li>
-              <li><a href="#">Схема проезда</a></li>
-              <li><a href="#">Телефон/факс</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <div class="copyright">Все права защищены © 2015</div>
-          <div class="footer-social-promo">Подписчикам в соц.сетях — скидки на обучение!</div>
-          <div class="footer-social">
-            <a href="#" class="social-btn social-btn-vk">Вконтакте</a>
-            <a href="#" class="social-btn social-btn-fb">Фейсбук</a>
-            <a href="#" class="social-btn social-btn-tw">Твиттер</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-  </body>
+<!doctype html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Space Science Website Template</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<script src="js/mobile.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div>
+				<a href="index" class="logo"><img src="images/logo.png" alt=""></a>
+				<ul id="navigation">
+					<li class="selected">
+						<a href="index">Home</a>
+					</li>
+					<li>
+						<a href="about">About</a>
+					</li>
+					<li class="menu">
+						<a href="projects">Projects</a>
+						<ul class="primary">
+							<li>
+								<a href="proj1">proj 1</a>
+							</li>
+						</ul>
+					</li>
+					<li class="menu">
+						<a href="blog">Blog</a>
+						<ul class="secondary">
+							<li>
+								<a href="singlepost">Single post</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="contact">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="body" class="home">
+			<div class="header">
+				<div>
+					<img src="images/satellite.png" alt="" class="satellite">
+					<h1>SOYUZ TMA-M</h1>
+					<h2>SPACECRAFT</h2>
+					<a href="blog" class="more">Read More</a>
+					<h3>FEATURED PROJECTS</h3>
+					<ul>
+						<li>
+							<a href="projects"><img src="images/project-image1.jpg" alt=""></a>
+						</li>
+						<li>
+							<a href="projects"><img src="images/project-image2.jpg" alt=""></a>
+						</li>
+						<li>
+							<a href="projects"><img src="images/project-image3.jpg" alt=""></a>
+						</li>
+						<li>
+							<a href="projects"><img src="images/project-image4.jpg" alt=""></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="body">
+				<div>
+					<h1>OUR MISSION</h1>
+					<p>This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.</p>
+				</div>
+			</div>
+			<div class="footer">
+				<div>
+					<ul>
+						<li>
+							<h1>FEATURED VIDEO</h1>
+							<a href="blog"><img src="images/mars-rover.jpg" alt=""><span></span></a>
+						</li>
+						<li>
+							<h1>LATEST BLOG</h1>
+							<ul>
+								<li>
+									<a href="blog"><img src="images/finding-planet.jpg" alt=""></a>
+									<h1>FINDING PLANET X-123</h1>
+									<span>FEBRUARY 6, 2023</span>
+									<a href="blog" class="more">Read More</a>
+								</li>
+								<li>
+									<a href="blog"><img src="images/new-satellitedish.jpg" alt=""></a>
+									<h1>NEW SATELLITE DISH</h1>
+									<span>FEBRUARY 3, 2023</span>
+									<a href="blog" class="more">Read More</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="connect">
+				<div>
+					<h1>FOLLOW OUR  MISSIONS ON</h1>
+					<div>
+						<a href="http://freewebsitetemplates.com/go/facebook/" class="facebook">facebook</a>
+						<a href="http://freewebsitetemplates.com/go/twitter/" class="twitter">twitter</a>
+						<a href="http://freewebsitetemplates.com/go/googleplus/" class="googleplus">googleplus</a>
+						<a href="http://pinterest.com/fwtemplates/" class="pinterest">pinterest</a>
+					</div>
+				</div>
+			</div>
+			<div class="footnote">
+				<div>
+					<p>&copy; 2023 BY SPACE PROSPECTION | ALL RIGHTS RESERVED</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

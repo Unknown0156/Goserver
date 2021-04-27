@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-var templates = template.Must(template.ParseFiles("templates/view.html", "templates/edit.html"))
+var templates = template.Must(template.ParseFiles("templates/edit.html"))
 var validPath = regexp.MustCompile("^/(edit/|save/|)([a-zA-Z0-9]+)$")
 
 type Page struct {
@@ -23,12 +23,18 @@ type Page struct {
 }
 
 func (p *Page) save() error {
-	filename := p.Title + ".html"
+	filename := p.Title
+	if !strings.Contains(p.Title, ".") {
+		filename += ".html"
+	}
 	return ioutil.WriteFile(filename, p.Body, 0600)
 }
 
 func (p *Page) load(title string) error {
-	filename := title + ".html"
+	filename := title
+	if !strings.Contains(title, ".") {
+		filename += ".html"
+	}
 	p.Title = title
 	var err error
 	p.Body, err = ioutil.ReadFile(filename)
@@ -41,7 +47,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	}
 }
 
-func mainHandler(w http.ResponseWriter, r *http.Request, title string) {
+func htmlHandler(w http.ResponseWriter, r *http.Request, title string) {
 	var p Page
 	if err := p.load(title); err != nil {
 		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
@@ -83,6 +89,25 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 	}
 }
 
+func resHandler(w http.ResponseWriter, r *http.Request) {
+	var p Page
+	p.Title = r.URL.Path[1:]
+	if err := p.load(p.Title); err != nil {
+		fmt.Printf("%v", err)
+		return
+	}
+	var contentType string
+	if strings.HasSuffix(p.Title, ".css") {
+		contentType = "text/css"
+	} else if strings.HasSuffix(p.Title, ".png") || strings.HasSuffix(p.Title, ".jpg") {
+		contentType = "image/png"
+	} else {
+		contentType = "text/plain"
+	}
+	w.Header().Add("Content-Type", contentType)
+	w.Write(p.Body)
+}
+
 func startServer(logger *log.Logger, addr string, srvch chan string) *http.Server {
 	srv := &http.Server{Addr: addr}
 	go func() {
@@ -104,9 +129,13 @@ func main() {
 	srvch := make(chan string)
 	srvmap := make(map[string]*http.Server)
 	srvmap[":80"] = startServer(logger, ":80", srvch)
-	http.HandleFunc("/", makeHandler(mainHandler))
+	http.HandleFunc("/", makeHandler(htmlHandler))
 	http.HandleFunc("/edit/", makeHandler(editHandler))
 	http.HandleFunc("/save/", makeHandler(saveHandler))
+	http.HandleFunc("/fonts/", resHandler)
+	http.HandleFunc("/css/", resHandler)
+	http.HandleFunc("/images/", resHandler)
+	http.HandleFunc("/js/", resHandler)
 
 	//Server shell
 	fmt.Println("GoServer Shell")
@@ -169,7 +198,5 @@ func main() {
 }
 
 /*TODO
-TestLoad css
-TestLoad Image
 Edit btn
 */
