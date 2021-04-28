@@ -64,6 +64,7 @@ func htmlHandler(w http.ResponseWriter, r *http.Request, title string) {
 	} else {
 		p.Body = edit
 	}
+	w.Header().Set("Cache-Control", "max-age=8640, public")
 	w.Write(p.Body)
 }
 
@@ -116,6 +117,7 @@ func resHandler(w http.ResponseWriter, r *http.Request) {
 		contentType = "text/plain"
 	}
 	w.Header().Add("Content-Type", contentType)
+	w.Header().Set("Cache-Control", "max-age=8640, public")
 	w.Write(p.Body)
 }
 
