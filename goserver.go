@@ -51,6 +51,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 }
 
 func htmlHandler(w http.ResponseWriter, r *http.Request, title string) {
+	log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
 	var p Page
 	if err := p.load(title); err != nil {
 		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
@@ -58,17 +59,18 @@ func htmlHandler(w http.ResponseWriter, r *http.Request, title string) {
 	}
 
 	index, ok := substringIndex(string(p.Body), "</body>")
-	edit := []byte("<div align='center'><a href='edit/" + p.Title + "'>EDIT THIS PAGE</a></div>")
+	edit := []byte("")
 	if ok {
 		p.Body = append(p.Body[:index], append(edit, p.Body[index:]...)...)
 	} else {
 		p.Body = edit
 	}
-	w.Header().Set("Cache-Control", "max-age=8640, public")
+	//w.Header().Set("Cache-Control", "max-age=8640, public")
 	w.Write(p.Body)
 }
 
 func editHandler(w http.ResponseWriter, r *http.Request, title string) {
+	log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
 	var p Page
 	if err := p.load(title); err != nil {
 		p = Page{Title: title}
@@ -77,6 +79,7 @@ func editHandler(w http.ResponseWriter, r *http.Request, title string) {
 }
 
 func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
+	log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
 	body := r.FormValue("body")
 	p := &Page{Title: title, Body: []byte(body)}
 	if err := p.save(); err != nil {
@@ -102,6 +105,7 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 }
 
 func resHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
 	var p Page
 	p.Title = r.URL.Path[1:]
 	if err := p.load(p.Title); err != nil {
@@ -117,7 +121,7 @@ func resHandler(w http.ResponseWriter, r *http.Request) {
 		contentType = "text/plain"
 	}
 	w.Header().Add("Content-Type", contentType)
-	w.Header().Set("Cache-Control", "max-age=8640, public")
+	//w.Header().Set("Cache-Control", "max-age=8640, public")
 	w.Write(p.Body)
 }
 
@@ -157,7 +161,8 @@ func main() {
 	http.HandleFunc("/fonts/", resHandler)
 	http.HandleFunc("/css/", resHandler)
 	http.HandleFunc("/images/", resHandler)
-	http.HandleFunc("/js/", resHandler)
+	http.HandleFunc("/script/", resHandler)
+	http.HandleFunc("/json/", resHandler)
 
 	//Server shell
 	fmt.Println("GoServer Shell")
